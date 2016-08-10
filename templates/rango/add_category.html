@@ -1,0 +1,24 @@
+{% extends "rango/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %} Rango Add Category {% endblock %}
+
+{% block content %}
+    <h1>Add a Category</h1>
+    <form id="category_form" method="POST" action="{% static 'add_category' %}">
+        {% csrf_token %}
+
+        {% for hidden_field in form.hidden_fields %}
+            {{ hidden_field  }}
+        {% endfor %}
+
+        {% for field in form.visible_fields %}
+            {{ field.errors }}
+            {{ field.help_text }}
+            {{ field }}
+        {% endfor %}
+
+        <input type="submit" name="submit" value="Create Category" />
+    </form>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "rango/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Rango Index Page{% endblock %}
+
+{% block content %}
+
+    <div class="page-header">
+        {% if user.is_authenticated %}
+            <h1>Rango says... hello {{ user.username }}!</h1>
+        {% else %}
+            <h1>Rango says... hello world!</h1>
+        {% endif %}
+    </div>
+
+    <div>
+        <div>
+            <h4>Categories</h4>
+
+            {% if categories %}
+                <ul>
+                    {% for cat in categories %}
+                    <li><a href="{% url 'rango:category' cat.slug %}">{{ cat.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no categories present.</strong>
+            {% endif %}
+        </div>
+    </div>
+
+    <div>
+        <div>
+            {% if pages %}
+                <ul>
+                    {% for page in pages %}
+                         <li><a href="{{page.url}}">{{ page.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no categories present.</strong>
+            {% endif %}
+        </div>
+    </div>
+
+    <img src='{% static "images/rango.jpg" %}' width="250px" height="200px" alt="Picture of Rango"/>
+    <p><strong>visits: {{ visits }}</strong></p>
+{% endblock %}

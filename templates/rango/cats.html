@@ -1,0 +1,11 @@
+{% load staticfiles %}
+
+{% if cats %}
+    {% for c in cats %}
+        <ul class="nav nav-sidebar">
+            {% if c == act_cat %} <li  class="active" ><span>{{ act_cat }}</span> {% else  %} <li>{% endif %}
+
+            <a href="{% url 'rango:category'  c.slug %}">{{ c.name }}</a></li>
+        </ul>
+    {% endfor %}
+{% endif %}

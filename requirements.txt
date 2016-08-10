@@ -1,0 +1,2 @@
+django==1.10
+django-registration-redux=1.4
